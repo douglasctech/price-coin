@@ -1,0 +1,11 @@
+import requests
+import json
+import time
+
+# Aplication
+price = requests.get(' https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL')
+price = price.json()
+price_dolar = price['USDBRL']['bid']
+price_euro = price['EURBRL']['bid']
+price_bitcoin = price['BTCBRL']['bid']
+print('bitcoin:', price_bitcoin, '\n euro:', price_euro, '\n dolar:', price_dolar)
