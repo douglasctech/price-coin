@@ -1,11 +1,52 @@
+import tkinter
+from tkinter import messagebox
 import requests
 import json
 import time
+from tkinter import *
+from tkinter.messagebox import Message, showinfo
+from requests.api import options
+
 
 # Aplication
+
 price = requests.get(' https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL')
 price = price.json()
-price_dolar = price['USDBRL']['bid']
-price_euro = price['EURBRL']['bid']
-price_bitcoin = price['BTCBRL']['bid']
-print('bitcoin:', price_bitcoin, '\n euro:', price_euro, '\n dolar:', price_dolar)
+
+
+
+def price_call1():
+    price_dolar = showinfo(title= 'R$', message= price['USDBRL']['bid'])
+    
+
+def price_call2():
+    price_euro = showinfo(title= 'R$', message= price['EURBRL']['bid'])
+        
+
+def price_call3():
+    price_bitcoin = showinfo(title='R$', message= price['BTCBRL']['bid'])
+        
+
+#front
+
+window = Tk()
+window.title('Price coin')
+text_orientation1 = Label(window, text= 'Price Check')
+text_orientation1.grid(column=0, row=0)
+
+
+
+
+button1 = Button(window, text= 'USD', command= price_call1)
+button1.grid(column= 0, row= 1)
+
+button2 = Button(window, text= 'EUR', command= price_call2)
+button2.grid(column= 0, row= 2)
+
+button3 = Button(window, text= 'BTC', command= price_call3)
+button3.grid(column= 0, row= 3)
+
+
+
+ 
+window.mainloop()
